@@ -37,39 +37,23 @@ Para outras proporções de imagem, utilizar a seguinte regra de três:
 
 Mais instruções no código.
 
-Obs.: Devido a questões de performance, a biblioteca  <i>complex.h</i> não foi utilizada. Em seu lugar, uma implementação manual dos números complexos foi feita utilizando de números reais. A operações com números complexos utilizadas são explicadas [aqui](https://www.mathsisfun.com/algebra/complex-number-multiply.html).
+Obs.: Devido a questões de performance, as funções da biblioteca  <i>complex.h</i> foram evitadas ao máximo. Em seu lugar, uma implementação manual dos números complexos foi feita utilizando de números reais. A operações com números complexos utilizadas são explicadas [aqui](https://www.mathsisfun.com/algebra/complex-number-multiply.html).
 
 # Imagens Obtidas
-Duas paletas de cores foram utilizadas, <i>Temperature</i> e <i>Rainbow</i> e estão disponíveis no código. É possível customizar outros intervalos de cores RGB para imagens diferentes.
+Duas paletas de cores foram utilizadas, <i>Temperature</i> e <i>paleta completa</i> e estão disponíveis no código, bem como as coorddenadas das imagens obtidas. É possível customizar outros intervalos de cores no espectro HSV / HSB para paletas de cores diferentes.
 
 
-Todas as imagens a seguir foram obtidas com o programa. As [imagens originais](high_res_images) têm o tamanho 10.000 x 10.000 pixels. Resoluções maiores podem ser obtidas.
+Todas as imagens a seguir foram obtidas com o programa. As [imagens originais](high_res_images) têm o tamanho 10.000 x 10.000 pixels com exceção da imagem 16:9, com resolução 15360 x 8640. Resoluções maiores podem ser obtidas. Imagens obtidas com 3000 ou 5000 iterações para melhor definição.
 <br><br><br>
 <img src="low_res_images/Deep_Zoom_edit.png" width="430" align="right"/> 
 <img src="low_res_images/Deep_Zoom_2_edit.png" width="430" align="left"/>
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-<pre>
-  600 iterações                                                                  1000 iterações
-  Coordernadas: x: -0.7709531; y: -0.115621                                      Coodernada: x: -0.7995; y: -0.166
-</pre>
-<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <img src="low_res_images/Seahorse Valley.png" width="430" align="right"/> 
 <img src="low_res_images/Mandelbrot Set.png" width="430" align="left"/>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<pre>
-  1000 iterações                                                             1000 iterações
-  Coordernadas: x: -0.76; y: -0.14                                           Coodernada: x: -0.5; y: 0
-</pre>
-<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 <img src="low_res_images/Julia_Set.png" width="430" align="left"/> 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-<pre>
-  3000 iterações
-  Coordernadas: x: -1.5754594256; y: 0.00021761610
-</pre>
