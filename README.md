@@ -1,6 +1,6 @@
 # Conjunto de Mandelbrot
 
-<img src="low_res_images/Fractal_edit.jpg" width="360"/>
+<img src="low_res_images/edit.jpg" width="360"/>
 
 O Conjunto de Mandelbrot é um fractal obtido usando números complexos iterando a equação 
 
@@ -45,15 +45,15 @@ Duas paletas de cores foram utilizadas, <i>Temperature</i> e <i>paleta completa<
 
 Todas as imagens a seguir foram obtidas com o programa. As [imagens originais](high_res_images) têm o tamanho 10.000 x 10.000 pixels com exceção da imagem 16:9, com resolução 15360 x 8640. Resoluções maiores podem ser obtidas. Imagens obtidas com 3000 ou 5000 iterações para melhor definição.
 <br><br><br>
-<img src="low_res_images/Deep_Zoom_edit.png" width="430" align="right"/> 
-<img src="low_res_images/Deep_Zoom_2_edit.png" width="430" align="left"/>
+<img src="low_res_images/deep_zoom.png" width="430" align="right"/> 
+<img src="low_res_images/deep_zoom_2.png" width="430" align="left"/>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<img src="low_res_images/Seahorse Valley.png" width="430" align="right"/> 
-<img src="low_res_images/Mandelbrot Set.png" width="430" align="left"/>
+<img src="low_res_images/mandelbrot.png" width="430" align="left"/> 
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-<img src="low_res_images/Julia_Set.png" width="430" align="left"/> 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<img src="low_res_images/mini_mandelbrot.png" width="900" align="left"/>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
