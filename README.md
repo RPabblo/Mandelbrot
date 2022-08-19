@@ -28,6 +28,17 @@ Esse cálculo será feito para cada pixel na imagem; se o número correspondente
 Mais sobre o [Conjunto de Mandelbrot](https://pt.mathigon.org/course/fractals/mandelbrot).
 
 # Sobre o programa
+Compilar com <br><br>
+
+<b>gcc -O3 -ffast-math -fopenmp mandelbrot.c -o mandelbrot</b><br><br>
+
+Caso haja um erro de compilação, instalar, através do MinGW Installation Manager, os seguintes pacote:<br>
+
+<ul>
+  <li>mingw32-libpthreadgc dev e dll</li>
+  <li>mingw32-pthreads-w32 dev, doc e lic</li>
+</ul>
+Após, compilar novamente. A compilação deverá ser bem-sucedida e o programa deverá ser capaz de usar multiplos cores e threads do CPU, reduzindo o tempo de computação consideravelmente.<br><br>
 Um arquivo .ppm será criado para guardar as cores dos pixels. Para visualizar a imagem gerada, converter o formato é necessário e pode ser feito pelo [Pixillion](https://www.nchsoftware.com/imageconverter/index.html). O formato .png é mais adequado para uma boa qualidade. Mais sobre o formato .ppm [aqui.](https://www.vivaolinux.com.br/artigo/Manipulacao-de-imagens-no-formato-PPM#:~:text=O%20formato%20ppm%20%C3%A9%20usado,arquivos%20com%20o%20padr%C3%A3o%20bin%C3%A1rio.&text=O%20valor%20m%C3%A1ximo%20de%20cada,0%20at%C3%A9%20255%20(inclusive).)
 
 Para uma imagem com a proporção 1:1, (RE_INICIO – RE_FINAL) = (IM_INICIO – IM_FINAL), ou seja, a distância entre o número real inicial e o final será igual a distância entre o primeiro número imaginário e o último.
