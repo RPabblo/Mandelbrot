@@ -1,10 +1,14 @@
 // Made by: Rwann Pabblo
 // Para melhor performance, compile com
-// gcc -O3 -ffast-math mandelbrot.c -o mandelbrot
+// gcc -O3 -ffast-math -fopenmp mandelbrot.c -o mandelbrot
+
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <complex.h>
+#include <omp.h>
+
 
 void mandelbrot(double cr, double ci, int MAX_ITER, char color[], int offset, float pl);
 
@@ -17,31 +21,33 @@ void paleta_temperature(float nsmooth, char color[], int offset, float pl);
 void paleta_completa(float nsmooth, char color[], int offset, float pl);
 
 
+//Tamanho da imagem, em pixels.
+#define COMP 2000
+#define ALT 2000
+
+
 int main(void)
 {
 // ============================================================================================
 
 
     // Área a ser visualizada, definida pelos intervalos na reta real e na reta imaginária.
-    const double RE_INICIO = -0.789;
-    const double RE_FINAL = -0.779;
-    const double IM_INICIO = -0.134;
-    const double IM_FINAL = -0.144;
+    const double RE_INICIO = -0.7709529;
+    const double RE_FINAL = -0.7709534;
+    const double IM_INICIO = -0.1156211;
+    const double IM_FINAL = -0.1156206;
 
-    //Tamanho da imagem, em pixels.
-    const double COMP = 1000;
-    const double ALT = 1000;
 
     // Número de iterações; para um zoom mais profundo, é recomendado um número maior delas.
-    const int MAX_ITER = 5000;
+    const int MAX_ITER = 3000;
 
     // Desvio de cores; recomendado valores entre 0 e 360.
-    const int offset = 51;
+    const int offset = 155;
 
     /* Comprimento da peleta de cores. 
     Quanto maior o valor, maior a frequencia (rotatividade) de cores.
     Recomendado menor valor para zoom profundo. */
-    const float pallete_lenght = 0.4;
+    const float pallete_lenght = 0.13f;
 
 
 // ============================================================================================
@@ -50,11 +56,13 @@ int main(void)
     // Intervalo de cores; 255 para o intervalo RGB.
     const int maxcolor = 255;
 
-    const double pixel_comp = (RE_FINAL - RE_INICIO) / COMP;
-    const double pixel_alt = (IM_FINAL - IM_INICIO) / ALT;
+    const double pixel_comp = (RE_FINAL - RE_INICIO) / (double) COMP;
+    const double pixel_alt = (IM_FINAL - IM_INICIO) / (double) ALT;
 
-    // Guarda o valor de cada cor (R, G, B) em valores de 0 a 255.
+    // Guarda o valor de cada cor (R, G, B) em valores de 0 a 255 dentro de uma matriz.
+    // A matriz possui 3x com o COMP em pixels pois cada pixel possui 3 valores RGB.
     char color[3];
+    static char colors[ALT][3 * COMP];
 
     // Parte real do número complexo.
     double cr;
@@ -63,10 +71,7 @@ int main(void)
 
     int x, y;
 
-    // Abre arquivo .ppm no modo de escrita em binário.
-    FILE* fp = fopen("fractal.ppm", "wb");
-    fprintf(fp, "P6\n %d\n %d\n %d\n", (int) COMP, (int) ALT, maxcolor);
-
+    #pragma omp parallel for private(ci, cr, y, x) schedule(dynamic, 2)
     for(y = 0; y < ALT; y++)
     {
         ci = IM_INICIO + y * pixel_alt;
@@ -77,16 +82,24 @@ int main(void)
 
             mandelbrot(cr, ci, MAX_ITER, color, offset, pallete_lenght);
 
-            // Escreve no arquivo .ppm a cor de cada pixel.
-            fwrite(color, 1, 3, fp);
+            // Escreve na matriz o valor do pixel.
+            colors[y][x * 3 + 0] = color[0];
+            colors[y][x * 3 + 1] = color[1];
+            colors[y][x * 3 + 2] = color[2];
         }
     }
+
+    // Abre arquivo .ppm no modo de escrita em binário.
+    FILE* fp = fopen("fractal.ppm", "wb");
+    fprintf(fp, "P6\n %d\n %d\n %d\n", COMP, ALT, maxcolor);
+
+    // Escreve a matriz de pixels no arquivo .ppm.
+    fwrite(colors, ALT, COMP * 3, fp);
 
     fclose(fp);
     
     return 0;
 }
-
 
 
 // Função que calcula e colore os pixels.
@@ -101,7 +114,8 @@ void mandelbrot(double cr, double ci, int MAX_ITER, char color[], int offset, fl
     double b = btemp * btemp;
     int n;
 
-    for(n = 0; (a + b) <= 4 && n < MAX_ITER; n++) {
+    //#pragma omp parallel for private(a, b, btemp, atemp)
+    for(n = 0; a + b <= 4 && n < MAX_ITER; n++) {
         btemp = 2 * atemp * btemp + ci; 
         atemp = a - b + cr;
 
@@ -203,7 +217,7 @@ void paleta_completa(float nsmooth, char color[], int offset, float pl)
     while(nsmooth > 360)
         nsmooth -= 360;
 
-    HSVtoRGB(nsmooth, 1.0f, 1.0f, color);
+    HSVtoRGB(nsmooth, 1.0f, 0.95f, color);
 }
 
 
@@ -234,5 +248,10 @@ const double RE_INICIO = -0.789;
 const double RE_FINAL = -0.779;
 const double IM_INICIO = -0.134;
 const double IM_FINAL = -0.144;
-*/
 
+    Mini mandelbrot zoom 1:1 
+const double RE_INICIO = -0.7709529;
+const double RE_FINAL = -0.7709534;
+const double IM_INICIO = -0.1156211;
+const double IM_FINAL = -0.1156206;
+*/
